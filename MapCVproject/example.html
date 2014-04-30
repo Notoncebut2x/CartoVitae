@@ -9,11 +9,12 @@
         
 	</head>
 	<style>
-	#map { height: 700px; }
+	#map { height: 640px; }
 	</style>
 	<body>
 		
 		 <div id="map"></div> <!-- Make sure to include this in the body section -->		
+		 <p> The George Washington University </p> 
 		 
 		 <script>  <!-- This is the js that has to come after everything above -->
 		 
@@ -26,11 +27,37 @@
     	 maxZoom: 18
 		 }).addTo(map);
 		 
+		 
 		 var popup = L.popup()
             .setLatLng([38.89918263962898, -77.0485782623291])
-            .setContent('<p><b>Name</b> <BR/> City <br/> BLURB </p>')
+            .setContent('<p><b>The George Washington University</b> <BR/> Washington D.C. <br/>B.A. International Relations 2004 - 2008. </p>')
             .addTo(map);
-
+	
+	     var popup = L.popup()
+            .setLatLng([52.22362621526668, 6.885713338851929])
+            .setContent('<p><b>The Univeristy of Twente</b> <br />M.Sc. Geo-information Science and Earth Observation 2010 - 2012 </p>')
+            .addTo(map);
+		 
+		  var popup = L.popup()
+            .setLatLng([40.44438328884785, -3.781571388244629])
+            .setContent('<p><b>American School of Madrid</b> <br />International Baccalaureate 2002 - 2004 </p>')
+            .addTo(map);
+            
+          var popup = L.popup()
+          	.setLatLng([ ])
+            .setContent('<p><b>Accenture</b> <br /> Analyst on the Department of State ILMS Project. </p>')
+            .addTo(map);  
+            
+          var popup = L.popup()
+          	.setLatLng([ ])
+            .setContent('<p><b>iMMAP Iraq</b> <br /> Information Management Officer 2010 - 2012. </p>')
+            .addTo(map);
+            
+           var popup = L.popup()
+          	.setLatLng([37.321614, -122.028302])
+            .setContent('<p><b>Apple Inc.</b> <br /> GIS Technician </p>')
+            .addTo(map);
+            
 		 
 		 </script>
 	</body>
