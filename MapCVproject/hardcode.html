@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />	
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
+		<link href='//api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.css' rel='stylesheet' />
+        <script src='//api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>
+        
+        <title>Map resume</title>	
+        
+	</head>
+	<style>
+	#map { height: 700px; }
+	</style>
+	<body>
+		
+		 <div id="map"></div> <!-- Make sure to include this in the body section -->		
+		 
+		 <script>  <!-- This is the js that has to come after everything above -->
+		 
+		 <!--var map = L.map('map').setView([38.89918263962898, -77.0485782623291], 16);-->
+		 var map = L.map('map').setView([40,0], 2);
+		
+		 <!--L.tileLayer('https://{s}.tiles.mapbox.com/v3/rorynealon.gkoof691/{z}/{x}/{y}.png', { -->
+		 // L.tileLayer('https://{s}.tiles.mapbox.com/v3/watles.i2chgpij/{z}/{x}/{y}.png', {
+		 L.tileLayer('https://{s}.tiles.mapbox.com/v3/watles.i2chgpij/{z}/{x}/{y}.png', {
+		 <!--L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { -->
+   		 attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+    	 maxZoom: 18
+		 }).addTo(map);
