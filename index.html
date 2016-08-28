@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Scroll-driven navigation with markers and a narrative</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+
+
+<style>
+
+article {
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0px;
+  left:0;
+  overflow:auto;
+  font-family: 'Roboto', sans-serif;
+  z-index: 1;
+  }
+.quiet {
+  color:rgba(0,0,0,0.5);
+  }
+.scroll {
+  display:block;
+  text-align:center;
+  }
+.sections {
+  background:rgba(255,255,255,0.5);
+  width:400px;
+  }
+section {
+  padding:20px;
+  color:rgba(0,0,0,0.5);
+  -webkit-transition:background 500ms, color 500ms;
+          transition:background 500ms, color 500ms;
+  }
+section.active {
+  background:#fff;
+  color:#404040;
+  }
+
+  h3 {
+    font-weight:500;
+  }
+
+  p {
+    font-weight:200;
+  }
+
+  ul {
+    font-weight:200;
+  }
+
+  #map {
+    z-index: -1;
+  }
+
+</style>
+<div id='map'></div>
+
+<article id='narrative'>
+  <div class='sections prose'>
+    <section id='cover' class='cover active'>
+      <h2>Rory Nealon's Carto Vitae</h2>
+      <p>My CV through a narrative, scroll driven map. It is a <a href="http://leafletjs.com/" target="_blank">leaflet</a> implmentation of MapBox's <a href="https://www.mapbox.com/mapbox.js/example/v1.0.0/scroll-driven-navigation/ "target="_blank"><i>Scroll-driven navigation with markers and a narrative</i></a> </p>
+      <small class='scroll quiet'>Scroll &#x25BE;</small>
+    </section>
+    <section id='Born'>
+      <h3><font color="red">Born  </font> and the early days  </h3>
+      <p>I was born in Satiago, Chile weremy father's my father was working on his first assignment for the U.S. Foreign Service.  Growing up as a "diplobrat" I lived in six country on four continents by the time I turned 18.</p>
+    </section>
+    <section id='High School'>
+      <h3><font color="red">The American School of Madrid  </font>Madrid, Spain, International Baccalaureate</h3>
+      <p>
+        <ul>
+        <li>After spending my first two years of high school in Budapest, Hungary, I graduated from the American School of Madrid with the International Baccalaureate diploma.</li>
+        <li>Member of Men's Varsity Basketball Team</li>
+        <li>Model United Nation's Conferences in Lisbon, Portugal and in the Hague, The Netherlands</li>
+        </ul>
+      </p>
+    </section>
+    <section id='College'>
+      <h3><font color="red">The George Washington University </font>Washington, DC, B.A. International Affairs</h3>
+      <p>
+        <ul>
+          <li>Concentrations in: Conflict & Security and Europe & Eurasia</li>
+          <li>Studied Abraod in Dublin, Ireland in a Peace and Conflict program</li>
+        </ul>
+      </p>
+    </section>
+
+    <section id='Accenture'>
+      <h3><font color="red">Accenture  </font> Analyst, Rosslyn, VA, Department of State Integrated Logistics Management Project</h3>
+      <p>
+        <ul>
+            <li>Led the on site support initiative and served as the dedicated system expert for over 200 contracting officials and staff.</li>
+            <li>Answered, tracked, and reported on issues to a variety of stakeholders</li>
+            <li>Ran and validated the office of Acquisitions Management’s (AQM) secure and non-secure Procurement Surcharge Report having to learn to work in an Oracle Database and SQL to do so</li>
+            <li>Led all training and user group sessions of non-system experts in utilizing complex acquisition software in an efficient manner.</li>
+        </ul>
+      </p>
+    </section>
+
+    <section id='iMMAP'>
+      <h3><font color="red">iMMAP  </font>Information Management Officer, Baghdad, Iraq, Support to Iraqi Humaitarian Mine Action</h3>
+      <p>
+        <ul>
+          <li>Served as the GIS/Information Management technical adviser to the Iraqi Directorate of Mine Action and other members of the Iraqi Humanitarian Demining Community</li>
+          <li>Guided, trained, and provided technical support to national staff to accomplish their information management (IM) duties</li>
+          <ul>
+            <li>Trained IM staff on: Information Management System for Mine Action (IMSMA), GIS concepts and skills</li>
+            <li>Assisted in cleaning, preparing, and migrating the IMSMA legacy database to the newest version </li>
+            <li>Analyzed null and integrity issues with legacy data and advised on corrections</li>
+            <li>Identified and addressed overlapping hazard polygons to reduce duplicate areas</li>
+            <li>Assisted in the design and creation of IMSMA forms to be used on a national level</li>
+            <li>Advised the development of local and national IM Standard Work & Operating Procedures</li>
+          </ul>
+          <li>Collaborated with colleges on writing iMMAP’s country plan, the IM section of the Project’s overall plan for 2010+, as well as quarterly reports</li>
+        </ul>
+      </p>
+    </section>
+
+    <section id='ITC'>
+      <h3><font color="red">ITC  </font>M.Sc. Geo-Information Sciene & Earth Observation, Enschede, The Netherlands, University of Twente</h3>
+      <p>
+        <ul>
+          <li>Specialised in Governance and Spatial Information Management</li>
+          <li>Class Representative in the Student Government and Residential Commissioner</li>
+          <li>Thesis Accepted to the International Institute for the Scientific Study of Subjectivity's <a href="https://qmethod.org/qconference/i4s13/" target="_blank">annual Q Conference</li></a>
+        </ul>
+    </p>
+    </section>
+
+    <section id='Apple'>
+      <h3><font color="red">Apple </font>GIS Technician, Cupertino, CA, Maps Data Team</h3>
+      <p>
+        <ul>
+          <li>Responsible for analysis, validation, curation, and reporting of data content</li>
+          <li>Reviewed and assembled new content from various sources</li>
+          <li>Created and published regularly scheduled and other ad-hoc reports as needed</li>
+          <li>Conducts exploratory analysis of newly ingested datasets</li>
+        </ul>
+    </p>
+    </section>
+
+    <section id='OTI'>
+      <h3><font color="red">OTI  </font>GIS Analyst, Washington, DC, US Agency for International Development/Office of Transition Initiatives</h3>
+      <p>
+        <ul>
+          <li>Creates regular and adhoc maps and other geospatial products for OTI programs</li>
+          <li>Conducts statistical analysis on surveys the team have ran as well as external ones</li>
+          <li>Develops webmaps and other online content for teams</li>
+          <li>Advises on technology and other cutting edge methodologies for teams to adopt</li>
+          <li>Supprots the office and teams various management processes through data analysis products</li>
+          <li>Trains staff on a vareity of technologies and data collection concepts</li>
+          <li>Participates in interagency meetings to coordinate and better facilate the use of OpenStreetMap and other open source technologies</li>
+        </ul>
+      </p>
+    </section>
+  </div>
+</article>
+
+<script>
+// L.mapbox.accessToken = 'pk.eyJ1Ijoicm9yeW5lYWxvbiIsImEiOiJQSkZ2NU9nIn0.8i2jsHIQQBU4lDdv3emAbQ';
+// In this case, we just hardcode data into the file. This could be dynamic.
+// The important part about this data is that the 'id' property matches
+// the HTML above - that's how we figure out how to link up the
+// map and the data.
+
+var places = { type: 'FeatureCollection', features: [
+{ geometry: { type: "Point", coordinates: [-70.57227, -33.39209]},
+  properties: { id: "Born" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-3.78195,40.44406]},
+  properties: { id: "High School" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-77.04561, 38.89908]},
+  properties: { id: "College" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-77.07139, 38.89431]},
+  properties: { id: "Accenture" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [44.3708, 33.3093]},
+  properties: { id: "iMMAP" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [6.88583, 52.22358]},
+  properties: { id: "ITC" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-122.02792, 37.32175]},
+  properties: { id: "Apple" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-77.03100,38.89701] },
+  properties: { id: "OTI" }, type: 'Feature' }
+]};
+
+var map = L.map('map').setView([27, -125], 2)
+    {zoomControl: false};
+
+map.zoomControl.remove();
+
+L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+var placesLayer = L.geoJson(places)
+    .addTo(map);
+
+
+// Ahead of time, select the elements we'll need -
+// the narrative container and the individual sections
+var narrative = document.getElementById('narrative'),
+    sections = narrative.getElementsByTagName('section'),
+    currentId = '';
+
+setId('cover');
+
+function setId(newId) {
+    // If the ID hasn't actually changed, don't do anything
+    if (newId === currentId) return;
+    // Otherwise, iterate through layers, setting the current
+    // marker to a different color and zooming to it.
+    placesLayer.eachLayer(function(layer) {
+        if (layer.feature.properties.id === newId) {
+            map.setView(layer.getLatLng(), layer.feature.properties.zoom || 16);
+            L.marker({
+                'opacity': '.9'
+            });
+        } else {
+            L.marker({
+                'opacity': '.2'
+            });
+        }
+    });
+    // highlight the current section
+    for (var i = 0; i < sections.length; i++) {
+        sections[i].className = sections[i].id === newId ? 'active' : '';
+    }
+    // And then set the new id as the current one,
+    // so that we know to do nothing at the beginning
+    // of this function if it hasn't changed between calls
+    currentId = newId;
+}
+
+// If you were to do this for real, you would want to use
+// something like underscore's _.debounce function to prevent this
+// call from firing constantly.
+narrative.onscroll = function(e) {
+    var narrativeHeight = narrative.offsetHeight;
+    var newId = currentId;
+    // Find the section that's currently scrolled-to.
+    // We iterate backwards here so that we find the topmost one.
+    for (var i = sections.length - 1; i >= 0; i--) {
+        var rect = sections[i].getBoundingClientRect();
+        if (rect.top >= 0 && rect.top <= narrativeHeight) {
+            newId = sections[i].id;
+        }
+    };
+    setId(newId);
+};
+</script>
+</body>
+</html>
