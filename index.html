@@ -72,7 +72,7 @@ section.active {
   <div class='sections prose'>
     <section id='cover' class='cover active'>
       <h2>Rory Nealon's Carto Vitae</h2>
-      <p>My CV through a narrative, scroll driven map. It is a <a href="http://leafletjs.com/" target="_blank">leaflet</a> implmentation of MapBox's <a href="https://www.mapbox.com/mapbox.js/example/v1.0.0/scroll-driven-navigation/ "target="_blank"><i>Scroll-driven navigation with markers and a narrative</i></a> </p>
+      <p>My CV through a narrative, scroll driven map. It is a <a href="http://leafletjs.com/" target="_blank">leaflet</a> implementation of MapBox's <a href="https://www.mapbox.com/mapbox.js/example/v1.0.0/scroll-driven-navigation/ "target="_blank"><i>Scroll-driven navigation with markers and a narrative</i></a> </p>
       <small class='scroll quiet'>Scroll &#x25BE;</small>
     </section>
     <section id='Born'>
@@ -201,9 +201,15 @@ var map = L.map('map').setView([27, -125], 2)
 
 map.zoomControl.remove();
 
-L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+L.tileLayer('http://tile.mapzen.com/mapzen/vector/v1/{layers}/{z}/{x}/{y}.mvt?api_key=vector-tiles-P8NDYdk',{
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
+
+
+
+// L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+//     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+// }).addTo(map);
 
 var placesLayer = L.geoJson(places)
     .addTo(map);
